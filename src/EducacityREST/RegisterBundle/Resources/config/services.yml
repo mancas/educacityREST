@@ -1,0 +1,7 @@
+parameters:
+#    register.example.class: EducacityREST\RegisterBundle\Example
+
+services:
+#    register.example:
+#        class: %register.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

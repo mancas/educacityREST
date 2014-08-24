@@ -1,0 +1,19 @@
+synchronize:
+    resource: "@SynchronizeBundle/Resources/config/routing.yml"
+    prefix:   /security/
+
+register:
+    resource: "@RegisterBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /security/
+
+o_auth:
+    resource: "@OAuthBundle/Resources/config/routing.yml"
+    prefix:   /
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

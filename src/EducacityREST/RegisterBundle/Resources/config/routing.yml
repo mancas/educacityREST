@@ -1,0 +1,5 @@
+register:
+    pattern:  /register
+    defaults: { _controller: RegisterBundle:Register:postRegister, _format: ~ }
+    requirements:
+        _method: POST

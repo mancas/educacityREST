@@ -1,0 +1,37 @@
+security:
+    acl:
+        connection: default
+
+    encoders:
+        EducacityREST\UserBundle\Entity\User: { algorithm: sha512, iterations: 10 }
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER, ROLE_ADMIN]
+        ROLE_USER: [ROLE_USER, ROLE_VALIDATED]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        user_provider:
+            id: user.provider
+
+    firewalls:
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
+
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
+            form_login:
+                provider: user_provider
+                check_path: oauth_server_auth_login_check
+                login_path: oauth_server_auth_login
+            anonymous: true
+
+        api:
+            pattern:    ^/security/
+            fos_oauth:  true
+            stateless:  true
+
+    access_control:
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

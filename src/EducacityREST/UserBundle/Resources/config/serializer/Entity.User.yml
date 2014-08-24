@@ -1,0 +1,9 @@
+EducacityREST\UserBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        email:
+            expose: true
+        registeredDate:
+            exposed: true

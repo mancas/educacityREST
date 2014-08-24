@@ -1,0 +1,3 @@
+synchronize_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SynchronizeBundle:Default:index }
