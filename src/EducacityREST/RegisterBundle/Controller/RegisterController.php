@@ -3,6 +3,7 @@ namespace EducacityREST\RegisterBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -20,16 +21,16 @@ class RegisterController extends FOSRestController{
 
     public function postRegisterAction(Request $request)
     {
-        try {
-            $user = $this->get('user.handler')->post($request);
-            $jsonResponse = json_encode(array('ok' => $user->getEmail()));
+        $result = $this->get('user.handler')->post($request);
+        if ($result instanceof User) {
+            $jsonResponse = json_encode(array('code' => 200, 'email' => $result->getEmail()));
             $response = new \Symfony\Component\HttpFoundation\Response($jsonResponse);
             $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
-        } catch (InvalidFormException $exception) {
-            return $exception->getForm();
+        } else {
+            $response = $result;
         }
+
+        return $response;
     }
     
     /**

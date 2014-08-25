@@ -4,10 +4,13 @@ namespace EducacityREST\UserBundle\Handler;
 use EducacityREST\UserBundle\Entity\User;
 use EducacityREST\UserBundle\Handler\UserHandlerInterface;
 use Doctrine\ORM\EntityManager;
+use FOS\RestBundle\View\View;
 use Symfony\Component\Form\FormFactoryInterface;
 use EducacityREST\UserBundle\Form\AppUserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\Form\Exception\InvalidArgumentException;
 
 class UserHandler
 {
@@ -103,6 +106,7 @@ class UserHandler
     {
         $form = $this->factory->create(new AppUserType(), $entity, array('method' => $method));
         $form->handleRequest($request);
+        ld($form->getErrorsAsString(), $form->isValid(), $form->getErrors());
         if ($form->isValid()) {
             $req = $request->request->get('app_user');
             if (!$req) {
@@ -116,10 +120,10 @@ class UserHandler
             }
             $this->em->persist($entity);
             $this->em->flush($entity);
-
+ld($entity);
             return $entity;
         }
 
-        throw new \Exception('Invalid submitted data');
+        return View::create($form, 400);
     }
 }
