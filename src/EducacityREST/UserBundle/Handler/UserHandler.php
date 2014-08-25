@@ -106,7 +106,6 @@ class UserHandler
     {
         $form = $this->factory->create(new AppUserType(), $entity, array('method' => $method));
         $form->handleRequest($request);
-        ld($form->getErrorsAsString(), $form->isValid(), $form->getErrors());
         if ($form->isValid()) {
             $req = $request->request->get('app_user');
             if (!$req) {
@@ -120,7 +119,7 @@ class UserHandler
             }
             $this->em->persist($entity);
             $this->em->flush($entity);
-ld($entity);
+
             return $entity;
         }
 
