@@ -15,7 +15,6 @@ use JMS\Serializer\Annotation\Expose;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="EducacityREST\UserBundle\Entity\UserRepository")
- * @DoctrineAssert\UniqueEntity("email")
  * @UniqueEntity("email")
  * @ExclusionPolicy("all")
  */
