@@ -1,0 +1,7 @@
+site:
+    path: /site/{id}
+    defaults: { _controller: SiteBundle:Site:getSite }
+
+sites:
+    path: /sites
+    defaults: { _controller: SiteBundle:Site:getSites }

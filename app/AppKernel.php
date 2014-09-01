@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new EducacityREST\UserBundle\UserBundle(),
             new EducacityREST\RegisterBundle\RegisterBundle(),
             new EducacityREST\SynchronizeBundle\SynchronizeBundle(),
+            new EducacityREST\SiteBundle\SiteBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
