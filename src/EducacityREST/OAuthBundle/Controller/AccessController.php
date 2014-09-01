@@ -69,7 +69,7 @@ class AccessController extends Controller
         $clients = $em->getRepository('OAuthBundle:Client')->findAll();
         $client = $clients[0];
         $jsonResponse = json_encode(array('code' => 200, 'client_id' => $client->getPublicId(),
-            'client_secret' => $client->getSecret));
+            'client_secret' => $client->getSecret()));
 
         $response = new \Symfony\Component\HttpFoundation\Response($jsonResponse);
         $response->headers->set('Content-Type', 'application/json');
