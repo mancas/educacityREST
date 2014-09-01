@@ -39,19 +39,6 @@ class RegisterController extends FOSRestController{
 
         return $response;
     }
-
-    public function testAction()
-    {
-        require_once 'Text/Wiki/Mediawiki.php';
-        $wiki = new \Text_Wiki_Mediawiki();
-        //$wiki = $wiki->factory('Mediawiki');
-        $wiki->setRenderConf('xhtml', 'Wikilink', 'view_url',
-            'http://wikipedia.org/wiki/');
-        $wiki->setRenderConf('xhtml', 'Wikilink', 'pages', false);
-        $wiki->setRenderConf('xhtml', 'Url', 'target', false);
-        ldd($wiki->transform("{{other uses|La Giralda (disambiguation)}} {{Infobox World Heritage Site | WHS = [[Seville Cathedral|Cathedral]], Alcázar and [[Archivo General de Indias|General Archive of the Indies]] in Seville | Image = [[File:Sevilla La Giralda 18-03-2011 18-24-31.jpg|200px]]<br><small>La Giralda</small> | State Party = [[Spain]] | Type = Cultural | Criteria = i, ii, iii, vi | ID = 383 | Region = [[List of World Heritage Sites in Europe|Europe and North America]] | Year = 1987 | Session = 11th | Link = http://whc.unesco.org/en/list/383 }} The \'\'\'Giralda\'\'\' ({{lang-es|La Giralda}} ; {{lang-ar|الخيرالدة}}) is a former [[minaret]] that was converted to a [[bell tower]]", 'Xhtml'));
-        return $this->render("RegisterBundle:Default:index.html.twig");
-    }
     
     /**
      *
