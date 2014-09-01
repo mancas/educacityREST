@@ -85,7 +85,6 @@ class AccessController extends Controller
             return false;
         }
         $passwordEncoded = $encoder->encodePassword($password, $user->getSalt());
-        ldd($passwordEncoded, $user->getPassword(), $password);
         return $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
     }
 
