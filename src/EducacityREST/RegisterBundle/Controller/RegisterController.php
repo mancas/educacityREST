@@ -19,9 +19,7 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegisterController extends FOSRestController{
-//access
-//Yzk0MjE1YmVjZWU1YzIyYTAzZTY1ZWEwNzkxNjIwMGQ1NjRlNDgzOTI2NTU3M2RmY2QyNGRkMzBkNzVjMWI4NQ
-//refresh NjFjOTFkYzJjYmQ2NmZjNWIwZmNlNDNmOGExMDRjOGI3Y2I3NjZkMDg4ZDIxOTBkZWVmNjdlNWU1ZWUzYTdiNA
+
     public function postRegisterAction(Request $request)
     {
         $result = $this->get('user.handler')->post($request);

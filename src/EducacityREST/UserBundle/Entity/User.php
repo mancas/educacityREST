@@ -60,6 +60,16 @@ class User implements UserInterface, \Serializable, EquatableInterface
     protected $salt;
 
     /**
+     * @ORM\OneToMany(targetEntity="EducacityREST\ImageBundle\Entity\ImageUser", mappedBy="user")
+     */
+    protected $images;
+
+    /**
+     * @ORM\Column(name="public", type="boolean", nullable=true, options={"default" = 0})
+     */
+    protected $public;
+
+    /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated", type="datetime", nullable=true)
      * @Expose
@@ -80,6 +90,11 @@ class User implements UserInterface, \Serializable, EquatableInterface
      * @Expose
      */
     protected $validated = false;
+
+    protected function __construct()
+    {
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * @param mixed $email
@@ -235,5 +250,26 @@ class User implements UserInterface, \Serializable, EquatableInterface
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function addImage($image)
+    {
+        $this->images->add($image);
     }
 }
