@@ -1,0 +1,7 @@
+parameters:
+#    image.example.class: EducacityREST\ImageBundle\Example
+
+services:
+#    image.example:
+#        class: %image.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

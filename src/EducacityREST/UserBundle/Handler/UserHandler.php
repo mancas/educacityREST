@@ -113,9 +113,6 @@ class UserHandler
             }
             if ($req['password']!= "") {
                 $entity->setPassword($req['password']);
-                $encoder = $this->encoderFactory->getEncoder($entity);
-                $passwordEncoded = $encoder->encodePassword($entity->getPassword(), $entity->getSalt());
-                $entity->setPassword($passwordEncoded);
             }
             $this->em->persist($entity);
             $this->em->flush($entity);
