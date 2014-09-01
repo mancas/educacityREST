@@ -10,3 +10,12 @@ oauth_server_auth_login:
 
 oauth_server_auth_login_check:
     pattern:  /oauth/v2/auth_login_check
+    defaults: { _controller: OAuthBundle:Access:loginCheck }
+
+login:
+    pattern: /oauth/v2/login_app
+    defaults: { _controller: OAuthBundle:Access:postLogin }
+
+set_user:
+    pattern: /oauth/v2/user_tokens
+    defaults: { _controller: OAuthBundle:Access:setUser }

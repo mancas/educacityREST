@@ -3,3 +3,7 @@ register:
     defaults: { _controller: RegisterBundle:Register:postRegister, _format: ~ }
     requirements:
         _method: POST
+
+test:
+    pattern:  /test
+    defaults: { _controller: RegisterBundle:Register:test, _format: ~ }
