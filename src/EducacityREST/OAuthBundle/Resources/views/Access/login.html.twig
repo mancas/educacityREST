@@ -1,0 +1,20 @@
+<div id="loginbox">
+    <form id="login" class="vertical" action="{{ path('oauth_server_auth_login_check') }}" method="post">
+        <h3 class="title">Dental<strong>Horse</strong></h3>
+        <p>{{"Introduce tu usuario y contraseña para acceder" | trans}}.</p>
+        <div class="input-group input-sm">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input class="form-control" type="text" name="_username" id="USERNAME" placeholder="{{"Usuario" | trans}}" />
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <input class="form-control" type="password" name="_password" id="PASSWORD" placeholder="{{"Contraseña" | trans}}" />
+        </div>
+        <div class="form-actions clearfix">
+            <div class="pull-right">
+                <a href="u/recover-password" class="flip-link to-recover grey">{{"Recuperar contraseña" | trans}} &raquo;</a>
+            </div>
+            <input type="submit" class="btn btn-block btn-primary btn-default" value="{{"Acceder" | trans}}" />
+        </div>
+    </form>
+</div>
