@@ -83,9 +83,10 @@ class SynchronizeController extends FOSRestController
         }
         $userID = $this->get('security.context')->getToken()->getUser()->getId();
         $user = $em->getRepository('UserBundle:User')->findOneById($userID);
-ldd($user);
+
         $name = $request->request->get('name');
         $publicProfile = $request->request->get('public_profile');
+ldd($publicProfile, $name);
         if ($publicProfile == 1) {
             $publicProfile = true;
         } else {
