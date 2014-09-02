@@ -86,7 +86,7 @@ class SynchronizeController extends FOSRestController
 
         $name = $request->request->get('name');
         $publicProfile = $request->request->get('public_profile');
-ldd($publicProfile, $name);
+
         if ($publicProfile == 1) {
             $publicProfile = true;
         } else {
@@ -101,7 +101,7 @@ ldd($publicProfile, $name);
         $response = new \Symfony\Component\HttpFoundation\Response($jsonResponse);
         $response->headers->set('Content-Type', 'application/json');
         $response->setStatusCode(200);
-
+ldd($response);
         return $response;
     }
 }
