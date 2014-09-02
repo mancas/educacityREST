@@ -101,7 +101,7 @@ class SynchronizeController extends FOSRestController
         $response = new \Symfony\Component\HttpFoundation\Response($jsonResponse);
         $response->headers->set('Content-Type', 'application/json');
         $response->setStatusCode(200);
-ldd($response);
+
         return $response;
     }
 }
