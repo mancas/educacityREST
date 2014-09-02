@@ -41,7 +41,7 @@ class SynchronizeController extends FOSRestController
 
         $directory = FileHelper::PATH . '/' . $image->getSubdirectory();
 
-        $name =  basename($_FILES['upload_file']['name']);
+        $name =  basename($_FILES['upload_file']['tmp_name']);
         $targetFile = $directory . '/' .
             FileHelper::getFileNameFromId($image->getId(), $name);
         if (!is_dir($directory))
@@ -50,6 +50,7 @@ class SynchronizeController extends FOSRestController
             $image->setImage($name);
             $user->addImage($image);
             $image->setUser($user);
+            $image->setSynchronized(true);
             $em->persist($image);
             $em->persist($user);
             $em->flush();
