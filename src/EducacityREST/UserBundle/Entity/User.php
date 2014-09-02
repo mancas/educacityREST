@@ -273,4 +273,21 @@ class User implements UserInterface, \Serializable, EquatableInterface
     {
         $this->images->add($image);
     }
+
+    /**
+     * @param mixed $public
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
+    
 }
