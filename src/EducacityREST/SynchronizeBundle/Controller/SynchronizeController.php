@@ -39,11 +39,11 @@ class SynchronizeController extends FOSRestController
         $em->persist($image);
         $em->flush();
 
-        $directory = FileHelper::PATH . $image->getSubdirectory();
+        $directory = FileHelper::PATH . '/' . $image->getSubdirectory();
+
         $name =  basename($_FILES['upload_file']['name']);
         $targetFile = $directory . '/' .
             FileHelper::getFileNameFromId($image->getId(), $name);
-ld(id_dir($directory));
         if (!is_dir($directory))
             mkdir($directory);
         if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $targetFile)) {
