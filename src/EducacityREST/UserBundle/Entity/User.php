@@ -92,7 +92,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
      */
     protected $validated = false;
 
-    protected function __construct()
+    public function __construct()
     {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
     }

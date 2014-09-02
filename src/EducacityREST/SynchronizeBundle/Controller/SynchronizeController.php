@@ -50,7 +50,7 @@ class SynchronizeController extends FOSRestController
             $image->setImage($name);
             $user->addImage($image);
             $image->setUser($user);
-            $image->setSynchronized(true);
+            $image->setSynchronized(new \DateTime('now'));
             $em->persist($image);
             $em->persist($user);
             $em->flush();
@@ -83,7 +83,6 @@ class SynchronizeController extends FOSRestController
         }
         $userID = $this->get('security.context')->getToken()->getUser()->getId();
         $user = $em->getRepository('UserBundle:User')->findOneById($userID);
-
         $name = $request->request->get('name');
         $publicProfile = $request->request->get('public_profile');
 
