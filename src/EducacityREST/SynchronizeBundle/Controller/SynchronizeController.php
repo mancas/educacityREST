@@ -69,4 +69,38 @@ class SynchronizeController extends FOSRestController
         $response->setStatusCode(400);
         return $response;
     }
+
+    /**
+     * POST Route annotation.
+     * @Post("/synchronize/profile")
+     * @View(serializerEnableMaxDepthChecks=true)
+     */
+    public function synchronizeProfile(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw new AccessDeniedException();
+        }
+        $userID = $this->get('security.context')->getToken()->getUser()->getId();
+        $user = $em->getRepository('UserBundle:User')->findOneById($userID);
+
+        $name = $request->request->get('name');
+        $publicProfile = $request->request->get('public_profile');
+        if ($publicProfile == 1) {
+            $publicProfile = true;
+        } else {
+            $publicProfile = false;
+        }
+        $user->setName($name);
+        $user->setPublic($publicProfile);
+        $em->persist($user);
+        $em->flush();
+
+        $jsonResponse = json_encode(array('code' => 200, 'name' => $name, 'public' => $publicProfile));
+        $response = new \Symfony\Component\HttpFoundation\Response($jsonResponse);
+        $response->headers->set('Content-Type', 'application/json');
+        $response->setStatusCode(200);
+
+        return $response;
+    }
 }
