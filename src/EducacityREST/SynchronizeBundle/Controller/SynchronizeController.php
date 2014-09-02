@@ -43,7 +43,7 @@ class SynchronizeController extends FOSRestController
         $name =  basename($_FILES['upload_file']['name']);
         $targetFile = $directory . '/' .
             FileHelper::getFileNameFromId($image->getId(), $name);
-
+ld(id_dir($directory));
         if (!is_dir($directory))
             mkdir($directory);
         if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $targetFile)) {
@@ -56,11 +56,16 @@ class SynchronizeController extends FOSRestController
             $jsonResponse = json_encode(array('code' => 200));
             $response = new \Symfony\Component\HttpFoundation\Response($jsonResponse);
             $response->headers->set('Content-Type', 'application/json');
+            $response->setStatusCode(200);
             return $response;
+        } else {
+            $em->remove($image);
+            $em->flush();
         }
         $jsonResponse = json_encode(array('code' => 400));
         $response = new \Symfony\Component\HttpFoundation\Response($jsonResponse);
         $response->headers->set('Content-Type', 'application/json');
+        $response->setStatusCode(400);
         return $response;
     }
 }
