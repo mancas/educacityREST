@@ -75,7 +75,7 @@ class SynchronizeController extends FOSRestController
      * @Post("/synchronize/profile")
      * @View(serializerEnableMaxDepthChecks=true)
      */
-    public function synchronizeProfile(Request $request)
+    public function synchronizeProfileAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
